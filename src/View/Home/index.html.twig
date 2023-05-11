@@ -1,6 +1,60 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
-{% endblock %}
+	{# <h1>Hello Wilder !</h1>
+																		<p>Find a complete CRUD example on #}
+	<a href="/items">/items</a>
+	page.</p>
+<body class="is-preload">
+	<div id="wrapper">
+		<div id="bg"></div>
+		<div id="overlay"></div>
+		<div
+			id="main">
+			<!-- Header -->
+			<header id="header">
+				<h1>plan</h1>
+				<h2>
+					Unexpected Holidays</h2>
+				<p>Vous ne savez pas où partir en vacances ?</p>
+				<p>
+					Choisissez un type de destination et on s'occupe de tout !
+				</p>
+				<form id='form'>
+					<div>
+						<label for="destinations-type"></label>
+						<select id="destinations-type" name="destinations-type">
+							<option value="">---type de destinations---</option>
+							<option value="">Cameroun</option>
+							<option value="">Mexique</option>
+							<option value="">France</option>
+							<option value="">Australie</option>
+							<option value="">Japon</option>
+							<option value="">USA</option>
+						</select>
+					</div>
+					<div>
+						<button class="myButton" type="submit">Envoyer</button>
+					</div>
+				</form>
+			</header>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<span class="copyright">&copy; Plan 2023</span>
+			</footer>
+
+		</div>
+	</div>
+	<script>
+		window.onload = function () {
+document.body.classList.remove('is-preload');
+}
+window.ontouchmove = function () {
+return false;
+}
+window.onorientationchange = function () {
+document.body.scrollTop = 0;
+}
+	</script>
+</body>{% endblock %}
