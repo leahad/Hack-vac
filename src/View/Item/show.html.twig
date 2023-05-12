@@ -2,13 +2,19 @@
 
 
 {% block content %}
+<div id="trip">
 		<h1> {{ selectCity.city }}</h1>
-		<h1>Activities</h1>
+		<h1 class="sous-titre">Activities</h1>
+        {% if activities is not empty %}
 			{% for activity in activities %}
 				<p>{{ activity.name }}</p>
 			{% endfor %}
-		<h1>Check-list</h1>
+        {% else %}
+			<p>no activities available for this place</p>
+        {% endif %}
+		<h1 class="sous-titre">Check-list</h1>
 			{% for checklist in checklists %}
 				<p>{{ checklist.item }}</p>
 			{% endfor %}
+</div>
 {% endblock %}

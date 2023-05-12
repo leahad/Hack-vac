@@ -112,12 +112,12 @@ class PlanController extends AbstractController
                 $selectCity['latitude']
             );
             $activities = [];
-            for ($i = 0; $i < 3; $i++) {
-                $activities[$i] = $content[rand(0, count($content) - 1)];
-                var_dump($activities[$i]);
-            }
-            if (empty($activities)) {
-                $activities[0] = "Pas d'activités de ce type pour ce lieu";
+            if (count($content) > 0) {
+                for ($i = 0; $i < 3; $i++) {
+                    $activities[$i] = $content[rand(0, count($content) - 1)];
+                }
+            } else {
+                $activities[0] = "no activities available for this place";
             }
             $checklists = $this->checkListManager->getChecklistByType($_POST['destinations-type']);
         }

@@ -12,7 +12,7 @@ class ChecklistManager extends AbstractManager
     {
         $query = "SELECT * FROM " . self::TABLE . " AS c 
         JOIN destination_type AS dt ON dt.id = c.destination_type_id 
-        WHERE dt.name = " . "'" . $type . "'" . ";";
+        WHERE dt.value = " . "'" . $type . "'" . ";";
 
         return $this->pdo->query($query)->fetchAll();
     }

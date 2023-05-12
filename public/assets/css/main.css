@@ -1193,7 +1193,7 @@ a:hover {
 }
 
 .myButton {
-	margin-top: 1rem;
+	margin-top: 2rem;
 	box-shadow: inset 0px 1px 0px 0px #ffffff;
 	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color: #ffffff;
@@ -1218,4 +1218,37 @@ a:hover {
 .myButton:active {
 	position: relative;
 	top: 1px;
+}
+
+input,
+select,
+textarea {
+	margin-top: 2rem;
+    appearance: none;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #FFFFFF;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}
+
+
+#trip {
+	background-color: #348cb2;
+	border-radius: 5px;
+    width: 23vw;
+    margin: 0 auto;
+	padding: 1rem;
+}
+
+#header .sous-titre {
+	font-size: 3em;
+    font-weight: 400;
+	margin-bottom: 1rem;
+    margin-top: 1rem;
 }
