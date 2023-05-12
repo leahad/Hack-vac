@@ -6,7 +6,7 @@ use PDO;
 
 class PlanManager extends AbstractManager
 {
-    public const TABLE = 'destination_location';
+    public const TABLE = 'location';
 
     /**
      * Insert new item in database

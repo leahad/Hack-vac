@@ -2,17 +2,29 @@
 
 namespace App\Controller;
 
+use App\Model\ChecklistManager;
 use App\Model\PlanManager;
+use App\Model\OpenTripManager;
 
 class PlanController extends AbstractController
 {
+    private PlanManager $manager;
+    private OpenTripManager $openTripManager;
+    private ChecklistManager $checkListManager;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->manager = new PlanManager();
+        $this->openTripManager = new OpenTripManager();
+        $this->checkListManager = new ChecklistManager();
+    }
     /**
      * List items
      */
     public function index(): string
     {
-        $planManager = new PlanManager();
-        $plans = $planManager->selectAll('title');
+        $plans = $this->manager->selectAll('title');
 
         return $this->twig->render('Item/index.html.twig', ['plans' => $plans]);
     }
@@ -22,8 +34,7 @@ class PlanController extends AbstractController
      */
     public function show(int $id): string
     {
-        $planManager = new PlanManager();
-        $plan = $planManager->selectOneById($id);
+        $plan = $this->manager->selectOneById($id);
 
         return $this->twig->render('Item/show.html.twig', ['plan' => $plan]);
     }
@@ -33,8 +44,7 @@ class PlanController extends AbstractController
      */
     public function edit(int $id): ?string
     {
-        $planManager = new PlanManager();
-        $plan = $planManager->selectOneById($id);
+        $plan = $this->manager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
@@ -43,7 +53,7 @@ class PlanController extends AbstractController
             // TODO validations (length, format...)
 
             // if validation is ok, update and redirection
-            $planManager->update($plan);
+            $this->manager->update($plan);
 
             header('Location: /items/show?id=' . $id);
 
@@ -68,8 +78,7 @@ class PlanController extends AbstractController
             // TODO validations (length, format...)
 
             // if validation is ok, insert and redirection
-            $planManager = new PlanManager();
-            $id = $planManager->insert($plan);
+            $id = $this->manager->insert($plan);
 
             header('Location:/items/show?id=' . $id);
             return null;
@@ -85,10 +94,39 @@ class PlanController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = trim($_POST['id']);
-            $planManager = new PlanManager();
-            $planManager->delete((int)$id);
+            $this->manager->delete((int)$id);
 
             header('Location:/items');
         }
+    }
+
+    public function locations()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $citys = $this->manager->selectAll();
+            $nbrCitys = count($citys);
+            $selectCity = $this->manager->selectOneById(rand(1, $nbrCitys));
+            $content = $this->openTripManager->getMap(
+                $_POST['destinations-type'],
+                $selectCity['longitude'],
+                $selectCity['latitude']
+            );
+            $activities = [];
+            for ($i = 0; $i < 3; $i++) {
+                $activities[$i] = $content[rand(0, count($content) - 1)];
+                var_dump($activities[$i]);
+            }
+            if (empty($activities)) {
+                $activities[0] = "Pas d'activités de ce type pour ce lieu";
+            }
+            $checklists = $this->checkListManager->getChecklistByType($_POST['destinations-type']);
+        }
+
+
+        return $this->twig->render('Item/show.html.twig', [
+            'activities' => $activities,
+            'selectCity' => $selectCity,
+            'checklists' => $checklists,
+        ]);
     }
 }

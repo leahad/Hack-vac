@@ -2,17 +2,13 @@
 
 
 {% block content %}
-	{# <h1>Item {{ item.title }}</h1>
-		    <p>{{ item.id }}. {{ item.title }}</p>
-		    <a href="/items/edit?id={{ item.id }}">Edit</a>
-		    <form action="/items/delete" method="POST">
-		        <input type="hidden" name="id" value="{{ item.id }}">
-		        <button>Delete</button>
-		    </form>
-		    <a href="/items">Back</a> #}
-					<h1> {{plan.city}}</h1>
-					<h1>
-						Activities</h1>
-                        <ul><li></li></ul>
-			<h1>Check-list</h1>
-			{% endblock %}
+		<h1> {{ selectCity.city }}</h1>
+		<h1>Activities</h1>
+			{% for activity in activities %}
+				<p>{{ activity.name }}</p>
+			{% endfor %}
+		<h1>Check-list</h1>
+			{% for checklist in checklists %}
+				<p>{{ checklist.item }}</p>
+			{% endfor %}
+{% endblock %}
