@@ -6,9 +6,8 @@
 This repository was created during a Hackathon.
 The theme was: 'create an application about Holidays'.
 
-We created an application for people who don't know where to go in vacation.
-You have to choose a type of location among natural, cultural, night owl and amusements and let chance decides for you!
-The app will suggest you a destination with some activities depending on your choice as well as a checklist to not forget anything.
+We developed an application designed for people who don't know where to go in vacation.
+The app allows users to select a preferred type of location, such as natural, cultural, night owl, or amusements, and then leaves the decision up to chance! Based on their selection, the app suggests a destination along with a range of activities. Additionally, it provides a helpful checklist to ensure that nothing important is forgotten.
 
 To build this app, we used a MVC framework created by the Wild Code School.
 It uses some cool vendors/libraries such as Twig and Grumphp.
