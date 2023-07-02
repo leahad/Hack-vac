@@ -1,6 +1,7 @@
-# Hackathon // plan
+# Plan
+*A hackathon project*
 
-## Description
+### Description
 
 This repository was created during a Hackathon.
 The theme was: 'create an application about Holidays'.
@@ -11,10 +12,12 @@ The app will suggest you a destination with some activities depending on your ch
 
 To build this app, we used a MVC framework created by the Wild Code School.
 It uses some cool vendors/libraries such as Twig and Grumphp.
+
+You can find a demo of the application [here](https://www.loom.com/share/552be33b5a204860a383781bf42acdcb?sid=2df716b0-46a7-43ca-adea-cdd8c8364fdb).
+
+### Steps
+
 Here are the steps to use the application :
-
-## Steps
-
 1. Clone the repo from Github.
 2. Run `composer install`.
 3. Create _config/db.php_ from _config/db.php.dist_ file and add your DB parameters. Don't delete the _.dist_ file, it must be kept.
